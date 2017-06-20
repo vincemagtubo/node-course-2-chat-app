@@ -18,6 +18,17 @@ app.use(express.static(pathPublic));
 io.on('connection', (socket_) => {
     console.log('New user added. (server/server.js)');
 
+    //server side script that connects to the client
+    socket_.emit('newMessage', {
+        from: 'JAY-Z',
+        test: 'this is a sample text from JAY-Z',
+        createdAt: 2323
+    });
+
+    socket_.on('createMessage', (createMssg) => {
+        console.log('Create Message', createMssg);
+    });
+
     socket_.on('disconnect', () => {
         console.log('User has disconnected. (server/server.js)');
     });
