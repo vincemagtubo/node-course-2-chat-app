@@ -6,6 +6,8 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 
+const {generateMessage} = require('./utils/message.js');
+
 const pathPublic = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
@@ -19,27 +21,15 @@ io.on('connection', (socket_) => {
     console.log('New user added. (server/server.js)');
 
     //to the chat app.
-    socket_.emit('newMessage', {
-        from: 'Administrator',
-        text: 'Welcome to hell nigger',
-        createdAt: new Date().getTime()
-    });
+    socket_.emit('newMessage', generateMessage('Administrator', 'Welcome to Chat app nigger.'));
 
-    socket_.broadcast.emit('newMessage', {
-        from: 'Administrator',
-        text: 'New user has joined',
-        createdAt: new Date().getTime()
-    });
+    socket_.broadcast.emit('newMessage', generateMessage('Administrator', 'New user has joined.'));
         
     socket_.on('createMessage', (createMssg) => {
         console.log('Create Message', createMssg);
 
         //server side script that connects to the client
-        io.emit('newMessage', {
-            from: createMssg.from,
-            text: createMssg.text,
-            createdAt: new Date().getTime()
-        });
+        io.emit('newMessage', generateMessage(createMssg.from, createMssg.text));
 
         // socket_.broadcast.emit('newMessage', {
         //     from: createMssg.from,
