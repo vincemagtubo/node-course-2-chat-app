@@ -18,16 +18,34 @@ app.use(express.static(pathPublic));
 io.on('connection', (socket_) => {
     console.log('New user added. (server/server.js)');
 
-    //server side script that connects to the client
+    //to the chat app.
+    socket_.emit('newMessage', {
+        from: 'Administrator',
+        text: 'Welcome to hell nigger',
+        createdAt: new Date().getTime()
+    });
 
+    socket_.broadcast.emit('newMessage', {
+        from: 'Administrator',
+        text: 'New user has joined',
+        createdAt: new Date().getTime()
+    });
+        
     socket_.on('createMessage', (createMssg) => {
         console.log('Create Message', createMssg);
 
+        //server side script that connects to the client
         io.emit('newMessage', {
             from: createMssg.from,
             text: createMssg.text,
             createdAt: new Date().getTime()
         });
+
+        // socket_.broadcast.emit('newMessage', {
+        //     from: createMssg.from,
+        //     text: createMssg.text,
+        //     createdAt: new Date().getTime()
+        // });
     });
 
     socket_.on('disconnect', () => {
