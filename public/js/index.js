@@ -20,11 +20,12 @@ socket_.on('newMessage', function (newMssg) {
     jQuery('#olMessages').append(li);
 });
 
+
 socket_.on('newLocationMssg', function (newLocMssg) {
     var li = jQuery('<li></li>');
     var aTag = jQuery('<a target="_blank">Current location of mine, <i>nigger.</i></a>');
 
-    li.text(`${newLocMssg.from}: `);
+    li.text(`${newLocMssg.from}`);
     aTag.attr('href', newLocMssg.url);
 
     li.append(aTag);
