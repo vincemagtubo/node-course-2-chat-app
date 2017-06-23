@@ -25,17 +25,12 @@ io.on('connection', (socket_) => {
 
     socket_.broadcast.emit('newMessage', generateMessage('Administrator', 'New user has joined.'));
         
-    socket_.on('createMessage', (createMssg) => {
+    socket_.on('createMessage', (createMssg, callbackIt) => {
         console.log('Create Message', createMssg);
 
         //server side script that connects to the client
         io.emit('newMessage', generateMessage(createMssg.from, createMssg.text));
-
-        // socket_.broadcast.emit('newMessage', {
-        //     from: createMssg.from,
-        //     text: createMssg.text,
-        //     createdAt: new Date().getTime()
-        // });
+        callbackIt('from server/server.js');
     });
 
     socket_.on('disconnect', () => {

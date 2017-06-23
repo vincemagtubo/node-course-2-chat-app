@@ -7,7 +7,6 @@ var generateMessage = (from, text) => {
 };
 
 
-
 module.exports = {
     generateMessage
 };
