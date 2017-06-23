@@ -21,9 +21,9 @@ io.on('connection', (socket_) => {
     console.log('New user added. (server/server.js)');
 
     //to the chat app.
-    socket_.emit('newMessage', generateMessage('Administrator', 'Welcome to Chat app nigger.'));
+    socket_.emit('newMessage', generateMessage('Administrator ', 'Welcome to Chat app nigger.'));
 
-    socket_.broadcast.emit('newMessage', generateMessage('Administrator', 'New user has joined.'));
+    socket_.broadcast.emit('newMessage', generateMessage('Administrator ', 'New user has joined.'));
         
     socket_.on('createMessage', (createMssg, callbackIt) => {
         console.log('Create Message', createMssg);
@@ -34,7 +34,7 @@ io.on('connection', (socket_) => {
     });
 
     socket_.on('createLocationMssg', (succPosition) => {
-        io.emit('newLocationMssg', generateLocationMessage('Administrator', succPosition.latitude, succPosition.longtitude));
+        io.emit('newLocationMssg', generateLocationMessage('Administrator ', succPosition.latitude, succPosition.longtitude));
     });
 
     socket_.on('disconnect', () => {

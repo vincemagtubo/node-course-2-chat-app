@@ -23,7 +23,7 @@ socket_.on('newMessage', function (newMssg) {
 
 socket_.on('newLocationMssg', function (newLocMssg) {
     var li = jQuery('<li></li>');
-    var aTag = jQuery('<a target="_blank">Current location of mine, <i>nigger.</i></a>');
+    var aTag = jQuery('<a target="_blank"> Current location of mine, <b><i>nigger.</i></b></a>');
 
     li.text(`${newLocMssg.from}`);
     aTag.attr('href', newLocMssg.url);
@@ -35,27 +35,33 @@ socket_.on('newLocationMssg', function (newLocMssg) {
 
 jQuery('#formMessage').on('submit', function (prevent) {
     prevent.preventDefault();
+
+    var messageTextbox = jQuery('[name=inputMessage]');
+
     socket_.emit('createMessage', {
         from: 'Nigger',
-        text: jQuery('[name=messageOne]').val()
+        text: messageTextbox.val()
     }, function () {
-
+        messageTextbox.val('')
     });
 });
 
 
-var locationBtn = jQuery('#btnLocation');
 
+var locationBtn = jQuery('#btnLocation');
 locationBtn.on('click', function () {
     if (!navigator.geolocation) {
         return alert('Geolocation not supported.');
     } else if (navigator.geolocation) {
+        locationBtn.attr('disabled', 'disabled').text('Sending location..');;
         navigator.geolocation.getCurrentPosition(function (successPos) {
+            locationBtn.removeAttr('disabled').text('Khalid Send me your location');;
             socket_.emit('createLocationMssg', {
                 latitude: successPos.coords.latitude,
                 longtitude: successPos.coords.longitude
             });
         }, function () {
+            locationBtn.removeAttr('disabled').text('Khalid Send me your location');
             alert('Cant do fetch location nigger.');
         });
     }
