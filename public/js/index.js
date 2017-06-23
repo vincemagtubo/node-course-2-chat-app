@@ -22,7 +22,7 @@ socket_.on('newMessage', function (newMssg) {
 
 socket_.on('newLocationMssg', function (newLocMssg) {
     var li = jQuery('<li></li>');
-    var aTag = jQuery('<a target="_blank">Current location, <i>nigger.</i></a>');
+    var aTag = jQuery('<a target="_blank">Current location of mine, <i>nigger.</i></a>');
 
     li.text(`${newLocMssg.from}: `);
     aTag.attr('href', newLocMssg.url);
