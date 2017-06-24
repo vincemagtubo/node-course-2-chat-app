@@ -22,13 +22,6 @@ socket_.on('newMessage', function (newMssg) {
     });
 
     jQuery('#olMessages').append(mssgBody);
-
-    // console.log("Message has sent.");
-
-    // var li = jQuery('<li></li>');
-    // li.text(`${newMssg.from} ${formattedTimeNewMssg}: ${newMssg.text}`);
-
-    // jQuery('#olMessages').append(li);
 });
 
 
@@ -43,17 +36,6 @@ socket_.on('newLocationMssg', function (newLocMssg) {
     });
 
     jQuery('#olMessages').append(locBody);
-
-    // console.log('Location has sent');
-
-    // var li = jQuery('<li></li>');
-    // var aTag = jQuery('<a target="_blank"> Current location of mine, <b><i>nigger.</i></b></a>');
- 
-    // li.text(`${newLocMssg.from} ${formattedTimeNewLoc}`);
-    // aTag.attr('href', newLocMssg.url);
-
-    // li.append(aTag);
-    // jQuery('#olMessages').append(li);
 });
 
 
