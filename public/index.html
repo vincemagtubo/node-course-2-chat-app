@@ -2,72 +2,34 @@
 
 <html>
     <head>
-        <meta charset=utf-8>
+        <meta charset="utf-8">
+        <title>Join | ChatApp</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <link rel="stylesheet" href="/css/styles.css">
     </head>
 
-    <body class="chat"> <!--line 82 styles.css-->
+    <body class="centered-form"> <!--line 41 styles.css-->
+        <div class="centered-form__form"> <!--line 55 styles.css-->
+            <form action="/chat.html">
+                <div class="form-field"> <!--line 64 styles.css-->
+                    <h3>Join a Chat</h3>
+                </div>
 
+                <div class="form-field"> <!--line 64 styles.css-->
+                    <label for="dsplyName">Display name</label>
+                    <input type="text" name="name" autofocus autocomplete="off">
+                </div>
 
-        <div class="chat__sidebar"> <!--line 86 styles.css-->
-            <h3 align="right">Niggers</h3> <!--line 98 styles.css-->
+                <div class="form-field"> <!--line 64 styles.css-->
+                    <label for="roomName">Room name</label>
+                    <input type="text" name="room">
+                </div>
 
-            <div id="users"></div>
+                <div class="form-field"> <!--line 64 styles.css-->
+                    <button>Join</button>
+                </div>
+            </form>    
         </div>
-
-
-        <div class="chat__main"> <!--line 116 styles.css-->
-            <ol id="olMessages" class="chat__messages"></ol> <!--line 123 styles.css-->
-
-            <div class="chat__footer">
-                <form id="formMessage" action="">
-                    <input name="inputMessage" type="text" placeholder="Message" autofocus autocomplete="off">
-                    <button>Send</button>
-                </form>
-
-                <button id="btnLocation"><b>Khalid </b>Send me your <i>location</i></button>
-            </div>
-        </div>
-        
-        
-        <!--
-            //class 'message' line 157 styles.css
-            //class 'message__title' line 161 styles.css
-            //class 'message__body' line none
-        //-->
-        <script id="scrNewMssg" type="text/template">
-            <li class="message"> 
-                <div class="message__title">
-                    <h4>{{mssgFrom}}</h4>
-                    <span>{{mssgTimestamp}}</span>
-                </div>
-
-                <div class="message__body">
-                    <p>{{mssgText}}</p>
-                </div>
-            </li>    
-        </script>
-
-        <script id="scrNewLoc" type="text/template">
-            <li class="message">
-                <div class="message__title">
-                    <h4>{{locFrom}}</h4>
-                    <span>{{locTimestamp}}</span>
-                </div>
-
-                <div class="message__body">
-                    <p>
-                        <a href="{{locUrl}}" target="_blank">  Current location of mine, <b><i>nigger.</i></b></a>
-                    </p>
-                </div>
-            </li>
-        </script>
-
     </body>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/libs/jquery-3.2.1.min.js"></script>
-    <script src="/js/libs/moment.js"></script>
-    <script src="/js/libs/mustache.js"></script>
-    <script src="/js/index.js"></script>
 </html>
