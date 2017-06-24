@@ -14,28 +14,46 @@ socket_.on('disconnect', function () {
 socket_.on('newMessage', function (newMssg) {
     var formattedTimeNewMssg = moment(newMssg.createdAtMssg).format('h:mm a');
 
-    console.log("Message has sent.");
+    var tempMssg = jQuery('#scrNewMssg').html();
+    var mssgBody = Mustache.render(tempMssg, {
+        mssgFrom: newMssg.from,
+        mssgText: newMssg.text,
+        mssgTimestamp: formattedTimeNewMssg
+    });
 
-    var li = jQuery('<li></li>');
-    li.text(`${newMssg.from} ${formattedTimeNewMssg}: ${newMssg.text}`);
+    jQuery('#olMessages').append(mssgBody);
 
-    jQuery('#olMessages').append(li);
+    // console.log("Message has sent.");
+
+    // var li = jQuery('<li></li>');
+    // li.text(`${newMssg.from} ${formattedTimeNewMssg}: ${newMssg.text}`);
+
+    // jQuery('#olMessages').append(li);
 });
 
 
 socket_.on('newLocationMssg', function (newLocMssg) {
     var formattedTimeNewLoc = moment(newLocMssg.createdAtLoc).format('h:mm a');
 
-    console.log('Location has sent');
+    var tempLoc = jQuery('#scrNewLoc').html();
+    var locBody = Mustache.render(tempLoc, {
+        locFrom: newLocMssg.from,
+        locUrl: newLocMssg.url,
+        locTimestamp: formattedTimeNewLoc
+    });
 
-    var li = jQuery('<li></li>');
-    var aTag = jQuery('<a target="_blank"> Current location of mine, <b><i>nigger.</i></b></a>');
+    jQuery('#olMessages').append(locBody);
+
+    // console.log('Location has sent');
+
+    // var li = jQuery('<li></li>');
+    // var aTag = jQuery('<a target="_blank"> Current location of mine, <b><i>nigger.</i></b></a>');
  
-    li.text(`${newLocMssg.from} ${formattedTimeNewLoc}`);
-    aTag.attr('href', newLocMssg.url);
+    // li.text(`${newLocMssg.from} ${formattedTimeNewLoc}`);
+    // aTag.attr('href', newLocMssg.url);
 
-    li.append(aTag);
-    jQuery('#olMessages').append(li);
+    // li.append(aTag);
+    // jQuery('#olMessages').append(li);
 });
 
 

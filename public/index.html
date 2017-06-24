@@ -28,12 +28,46 @@
                 <button id="btnLocation"><b>Khalid </b>Send me your <i>location</i></button>
             </div>
         </div>
-
         
+        
+        <!--
+            //class 'message' line 157 styles.css
+            //class 'message__title' line 161 styles.css
+            //class 'message__body' line none
+        //-->
+        <script id="scrNewMssg" class="text/template">
+            <li class="message"> 
+                <div class="message__title">
+                    <h4>{{mssgFrom}}</h4>
+                    <span>{{mssgTimestamp}}</span>
+                </div>
+
+                <div class="message__body">
+                    <p>{{mssgText}}</p>
+                </div>
+            </li>    
+        </script>
+
+        <script id="scrNewLoc" class="text/template">
+            <li class="message">
+                <div class="message__title">
+                    <h4>{{locFrom}}</h4>
+                    <span>{{locTimestamp}}</span>
+                </div>
+
+                <div class="message__body">
+                    <p>
+                        <a href="{{locUrl}}" target="_blank">  Current location of mine, <b><i>nigger.</i></b></a>
+                    </p>
+                </div>
+            </li>
+        </script>
+
     </body>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/jquery-3.2.1.min.js"></script>
     <script src="/js/libs/moment.js"></script>
+    <script src="/js/libs/mustache.js"></script>
     <script src="/js/index.js"></script>
 </html>
